@@ -10,6 +10,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
+  int _currentTab = 0;
   List<IconData> _icons = [
     FontAwesomeIcons.plane,
     FontAwesomeIcons.bed,
@@ -73,6 +74,33 @@ class _HomeScreenState extends State<HomeScreen> {
           HotelCarousel()
         ],
       )),
+      bottomNavigationBar: BottomNavigationBar(
+          currentIndex: _currentTab,
+          onTap: (int value) {
+            setState(() {
+              _currentTab = value;
+            });
+          },
+          items: [
+            BottomNavigationBarItem(
+                title: SizedBox.shrink(),
+                icon: Icon(
+                  Icons.search,
+                  size: 30.0,
+                )),
+            BottomNavigationBarItem(
+                title: SizedBox.shrink(),
+                icon: Icon(
+                  Icons.local_pizza,
+                  size: 30.0,
+                )),
+            BottomNavigationBarItem(
+                title: SizedBox.shrink(),
+                icon: CircleAvatar(
+                  radius: 15.0,
+                  backgroundImage: AssetImage('assets/images/person.jpg'),
+                ))
+          ]),
     );
   }
 }
