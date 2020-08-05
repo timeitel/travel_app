@@ -13,6 +13,16 @@ class DestinationScreen extends StatefulWidget {
 }
 
 class _DestinationScreenState extends State<DestinationScreen> {
+  _buildRatingStars(int rating) {
+    String stars = '';
+    for (int i = 0; i < rating; i++) {
+      stars += '⭐ ';
+    }
+    stars.trim();
+
+    return Text(stars);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -173,7 +183,7 @@ class _DestinationScreenState extends State<DestinationScreen> {
                                 activity.type,
                                 style: TextStyle(color: Colors.grey),
                               ),
-                              // _buildRatingStars(activity.rating),
+                              _buildRatingStars(activity.rating),
                               SizedBox(
                                 height: 10.0,
                               ),
