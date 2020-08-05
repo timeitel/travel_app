@@ -128,6 +128,7 @@ class _DestinationScreenState extends State<DestinationScreen> {
             ),
             Expanded(
               child: ListView.builder(
+                padding: EdgeInsets.only(top: 10.0, bottom: 15.0),
                 itemCount: widget.destination.activities.length,
                 itemBuilder: (BuildContext context, int index) {
                   Activity activity = widget.destination.activities[index];
@@ -190,6 +191,7 @@ class _DestinationScreenState extends State<DestinationScreen> {
                               Row(
                                 children: <Widget>[
                                   Container(
+                                    padding: EdgeInsets.all(5.0),
                                     width: 70.0,
                                     decoration: BoxDecoration(
                                       color: Theme.of(context).accentColor,
@@ -202,6 +204,7 @@ class _DestinationScreenState extends State<DestinationScreen> {
                                     width: 10.0,
                                   ),
                                   Container(
+                                    padding: EdgeInsets.all(5.0),
                                     width: 70.0,
                                     decoration: BoxDecoration(
                                       color: Theme.of(context).accentColor,
