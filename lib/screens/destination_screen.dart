@@ -215,6 +215,18 @@ class _DestinationScreenState extends State<DestinationScreen> {
                             ],
                           ),
                         ),
+                      ),
+                      Positioned(
+                        left: 20.0,
+                        top: 15.0,
+                        bottom: 15.0,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(20.0),
+                          child: Image(
+                              width: 110.0,
+                              image: AssetImage(activity.imageUrl),
+                              fit: BoxFit.cover),
+                        ),
                       )
                     ],
                   );
