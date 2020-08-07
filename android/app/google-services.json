@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1343593530",
+    "firebase_url": "https://flutter-997a9.firebaseio.com",
+    "project_id": "flutter-997a9",
+    "storage_bucket": "flutter-997a9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1343593530:android:3e1702011ade5814aca903",
+        "android_client_info": {
+          "package_name": "com.timeitel.travel_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1343593530-ur6a6jtglmhos4jruj28gc5kkgo6pv18.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAhdQsqowHEaipcX5bQRvH2CXN0kyV1Ev4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1343593530-ur6a6jtglmhos4jruj28gc5kkgo6pv18.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
