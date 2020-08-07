@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:travel_app/models/destination_model.dart';
-import 'package:travel_app/screens/destination_screen.dart';
+import 'package:travel_app/screens/home/destination_screen.dart';
 
 class DestinationCarousel extends StatelessWidget {
   @override

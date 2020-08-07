@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:travel_app/screens/login_screen.dart';
+import 'package:travel_app/screens/auth/login_screen.dart';
 
 class Wrapper extends StatelessWidget {
   @override
