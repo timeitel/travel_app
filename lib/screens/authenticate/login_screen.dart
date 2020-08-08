@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:travel_app/services/auth.dart';
 import 'package:travel_app/widgets/constants.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -8,6 +9,8 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final AuthService _auth = AuthService();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,7 +54,31 @@ class _LoginScreenState extends State<LoginScreen> {
                       SizedBox(height: 30.0),
                       _buildPasswordInput(),
                       _buildForgotPasswordBtn(),
-                      _buildLoginBtn(),
+                      Container(
+                        padding: EdgeInsets.symmetric(vertical: 25.0),
+                        width: double.infinity,
+                        child: RaisedButton(
+                          elevation: 5.0,
+                          onPressed: () async {
+                            dynamic result = await _auth.signInAnon();
+                          },
+                          padding: EdgeInsets.all(15.0),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30.0),
+                          ),
+                          color: Colors.white,
+                          child: Text(
+                            'LOGIN',
+                            style: TextStyle(
+                              color: Color(0xFF527DAA),
+                              letterSpacing: 1.5,
+                              fontSize: 18.0,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'OpenSans',
+                            ),
+                          ),
+                        ),
+                      ),
                       _buildSignupBtn(),
                     ],
                   ),
@@ -169,32 +196,6 @@ Widget _buildForgotPasswordBtn() {
       child: Text(
         'Forgot password?',
         style: kLabelStyle,
-      ),
-    ),
-  );
-}
-
-Widget _buildLoginBtn() {
-  return Container(
-    padding: EdgeInsets.symmetric(vertical: 25.0),
-    width: double.infinity,
-    child: RaisedButton(
-      elevation: 5.0,
-      onPressed: () => print('Login Button Pressed'),
-      padding: EdgeInsets.all(15.0),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(30.0),
-      ),
-      color: Colors.white,
-      child: Text(
-        'LOGIN',
-        style: TextStyle(
-          color: Color(0xFF527DAA),
-          letterSpacing: 1.5,
-          fontSize: 18.0,
-          fontWeight: FontWeight.bold,
-          fontFamily: 'OpenSans',
-        ),
       ),
     ),
   );
