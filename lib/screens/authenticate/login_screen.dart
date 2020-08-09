@@ -53,14 +53,44 @@ class _LoginScreenState extends State<LoginScreen> {
                       _buildEmailInput(),
                       SizedBox(height: 30.0),
                       _buildPasswordInput(),
-                      _buildForgotPasswordBtn(),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          FlatButton(
+                            onPressed: () async {
+                              dynamic result = await _auth.signInAnon();
+                              if (result == null) {
+                                print('error signing in');
+                                print(result);
+                              } else {
+                                print('signedin');
+                                print(result);
+                              }
+                            },
+                            padding: EdgeInsets.only(right: 0.0),
+                            child: Text(
+                              'Continue as guest',
+                              style: kLabelStyle,
+                            ),
+                          ),
+                          FlatButton(
+                            onPressed: () =>
+                                print('Forgot Password Button Pressed'),
+                            padding: EdgeInsets.only(right: 0.0),
+                            child: Text(
+                              'Forgot password?',
+                              style: kLabelStyle,
+                            ),
+                          ),
+                        ],
+                      ),
                       Container(
                         padding: EdgeInsets.symmetric(vertical: 25.0),
                         width: double.infinity,
                         child: RaisedButton(
                           elevation: 5.0,
-                          onPressed: () async {
-                            dynamic result = await _auth.signInAnon();
+                          onPressed: () {
+                            print('Logging in ');
                           },
                           padding: EdgeInsets.all(15.0),
                           shape: RoundedRectangleBorder(
@@ -184,20 +214,6 @@ Widget _buildPasswordInput() {
         ),
       ),
     ],
-  );
-}
-
-Widget _buildForgotPasswordBtn() {
-  return Container(
-    alignment: Alignment.centerRight,
-    child: FlatButton(
-      onPressed: () => print('Forgot Password Button Pressed'),
-      padding: EdgeInsets.only(right: 0.0),
-      child: Text(
-        'Forgot password?',
-        style: kLabelStyle,
-      ),
-    ),
   );
 }
 
