@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:travel_app/services/auth_service.dart';
 import 'package:travel_app/widgets/destination_carousel.dart';
 import 'package:travel_app/widgets/hotel_carousel.dart';
 
@@ -17,6 +18,7 @@ class _HomeScreenState extends State<HomeScreen> {
     FontAwesomeIcons.walking,
     FontAwesomeIcons.biking,
   ];
+  final AuthService _auth = AuthService();
 
   Widget _buildIcon(int index) {
     return GestureDetector(
@@ -76,7 +78,11 @@ class _HomeScreenState extends State<HomeScreen> {
       )),
       bottomNavigationBar: BottomNavigationBar(
           currentIndex: _currentTab,
-          onTap: (int value) {
+          onTap: (int value) async {
+            if (value == 2) {
+              await _auth.signOut();
+            }
+
             setState(() {
               _currentTab = value;
             });
@@ -96,10 +102,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 )),
             BottomNavigationBarItem(
                 title: SizedBox.shrink(),
-                icon: CircleAvatar(
-                  radius: 15.0,
-                  backgroundImage: AssetImage('assets/images/person.jpg'),
-                ))
+                icon: Icon(
+                  Icons.power_settings_new,
+                  size: 30.0,
+                )),
           ]),
     );
   }
