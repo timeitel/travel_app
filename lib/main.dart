@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:travel_app/screens/wrapper.dart';
+import 'package:travel_app/screens/auth_state.dart';
 
 void main() => runApp(MyApp());
 
