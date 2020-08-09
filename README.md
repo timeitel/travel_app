@@ -1,3 +1,3 @@
 # Travel App
 
-Travel app UI for mobile.
+Mobile app to demonstrate and practice Flutter with a Firebase backend.
