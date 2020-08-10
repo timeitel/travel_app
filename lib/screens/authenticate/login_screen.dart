@@ -11,6 +11,10 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final AuthService _auth = AuthService();
 
+  // form field state
+  String email = '';
+  String password = '';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,6 +50,9 @@ class _LoginScreenState extends State<LoginScreen> {
                           decoration: Constants.decorationStyle,
                           height: 60.0,
                           child: TextFormField(
+                            onChanged: (val) {
+                              setState(() => email = val);
+                            },
                             keyboardType: TextInputType.emailAddress,
                             style: TextStyle(
                               color: Colors.white,
@@ -73,7 +80,10 @@ class _LoginScreenState extends State<LoginScreen> {
                           alignment: Alignment.centerLeft,
                           decoration: Constants.decorationStyle,
                           height: 60.0,
-                          child: TextField(
+                          child: TextFormField(
+                            onChanged: (val) {
+                              setState(() => password = val);
+                            },
                             obscureText: true,
                             style: TextStyle(
                               color: Colors.white,
@@ -127,8 +137,9 @@ class _LoginScreenState extends State<LoginScreen> {
                           width: double.infinity,
                           child: RaisedButton(
                             elevation: 5.0,
-                            onPressed: () {
-                              print('Logging in ');
+                            onPressed: () async {
+                              print(email);
+                              print(password);
                             },
                             padding: EdgeInsets.all(15.0),
                             shape: RoundedRectangleBorder(
@@ -137,13 +148,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             color: Colors.white,
                             child: Text(
                               'LOGIN',
-                              style: TextStyle(
-                                color: Color(0xFF527DAA),
-                                letterSpacing: 1.5,
-                                fontSize: 18.0,
-                                fontWeight: FontWeight.bold,
-                                fontFamily: 'OpenSans',
-                              ),
+                              style: Constants.loginTextStyle,
                             ),
                           ),
                         ),

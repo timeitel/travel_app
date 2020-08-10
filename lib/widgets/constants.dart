@@ -42,3 +42,11 @@ final gradientContainer = Container(
     ),
   ),
 );
+
+final loginTextStyle = TextStyle(
+  color: Color(0xFF527DAA),
+  letterSpacing: 1.5,
+  fontSize: 18.0,
+  fontWeight: FontWeight.bold,
+  fontFamily: 'OpenSans',
+);
