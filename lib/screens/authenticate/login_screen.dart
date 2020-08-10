@@ -46,13 +46,66 @@ class _LoginScreenState extends State<LoginScreen> {
                     vertical: 120.0,
                   ),
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: <Widget>[
                       _buildLoginHero(),
                       SizedBox(height: 30.0),
-                      _buildEmailInput(),
+                      Text(
+                        'Email',
+                        style: kLabelStyle,
+                      ),
+                      SizedBox(height: 10.0),
+                      Container(
+                        alignment: Alignment.centerLeft,
+                        decoration: kBoxDecorationStyle,
+                        height: 60.0,
+                        child: TextField(
+                          keyboardType: TextInputType.emailAddress,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontFamily: 'OpenSans',
+                          ),
+                          decoration: InputDecoration(
+                            border: InputBorder.none,
+                            contentPadding: EdgeInsets.only(top: 14.0),
+                            prefixIcon: Icon(
+                              Icons.email,
+                              color: Colors.white,
+                            ),
+                            hintText: 'Enter your email',
+                            hintStyle: kHintTextStyle,
+                          ),
+                        ),
+                      ),
                       SizedBox(height: 30.0),
-                      _buildPasswordInput(),
+                      Text(
+                        'Password',
+                        style: kLabelStyle,
+                      ),
+                      SizedBox(height: 10.0),
+                      Container(
+                        alignment: Alignment.centerLeft,
+                        decoration: kBoxDecorationStyle,
+                        height: 60.0,
+                        child: TextField(
+                          obscureText: true,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontFamily: 'OpenSans',
+                          ),
+                          decoration: InputDecoration(
+                            border: InputBorder.none,
+                            contentPadding: EdgeInsets.only(top: 14.0),
+                            prefixIcon: Icon(
+                              Icons.lock,
+                              color: Colors.white,
+                            ),
+                            hintText: 'Enter your password',
+                            hintStyle: kHintTextStyle,
+                          ),
+                        ),
+                      ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
@@ -135,13 +188,16 @@ class _buildLoginHero extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      'Travel Check',
-      style: TextStyle(
-        color: Colors.white,
-        fontFamily: 'OpenSans',
-        fontSize: 30.0,
-        fontWeight: FontWeight.bold,
+    return Align(
+      alignment: Alignment.bottomCenter,
+      child: Text(
+        'Travel Check',
+        style: TextStyle(
+          color: Colors.white,
+          fontFamily: 'OpenSans',
+          fontSize: 30.0,
+          fontWeight: FontWeight.bold,
+        ),
       ),
     );
   }
@@ -150,96 +206,43 @@ class _buildLoginHero extends StatelessWidget {
 Widget _buildEmailInput() {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
-    children: <Widget>[
-      Text(
-        'Email',
-        style: kLabelStyle,
-      ),
-      SizedBox(height: 10.0),
-      Container(
-        alignment: Alignment.centerLeft,
-        decoration: kBoxDecorationStyle,
-        height: 60.0,
-        child: TextField(
-          keyboardType: TextInputType.emailAddress,
-          style: TextStyle(
-            color: Colors.white,
-            fontFamily: 'OpenSans',
-          ),
-          decoration: InputDecoration(
-            border: InputBorder.none,
-            contentPadding: EdgeInsets.only(top: 14.0),
-            prefixIcon: Icon(
-              Icons.email,
-              color: Colors.white,
-            ),
-            hintText: 'Enter your email',
-            hintStyle: kHintTextStyle,
-          ),
-        ),
-      ),
-    ],
+    children: <Widget>[],
   );
 }
 
 Widget _buildPasswordInput() {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
-    children: <Widget>[
-      Text(
-        'Password',
-        style: kLabelStyle,
-      ),
-      SizedBox(height: 10.0),
-      Container(
-        alignment: Alignment.centerLeft,
-        decoration: kBoxDecorationStyle,
-        height: 60.0,
-        child: TextField(
-          obscureText: true,
-          style: TextStyle(
-            color: Colors.white,
-            fontFamily: 'OpenSans',
-          ),
-          decoration: InputDecoration(
-            border: InputBorder.none,
-            contentPadding: EdgeInsets.only(top: 14.0),
-            prefixIcon: Icon(
-              Icons.lock,
-              color: Colors.white,
-            ),
-            hintText: 'Enter your password',
-            hintStyle: kHintTextStyle,
-          ),
-        ),
-      ),
-    ],
+    children: <Widget>[],
   );
 }
 
 Widget _buildSignupBtn() {
-  return GestureDetector(
-    onTap: () => print('Sign Up Button Pressed'),
-    child: RichText(
-      text: TextSpan(
-        children: [
-          TextSpan(
-            text: 'Don\'t have an account? ',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 16.0,
-              fontWeight: FontWeight.w400,
+  return Align(
+    alignment: Alignment.center,
+    child: GestureDetector(
+      onTap: () => print('Sign Up Button Pressed'),
+      child: RichText(
+        text: TextSpan(
+          children: [
+            TextSpan(
+              text: 'Don\'t have an account? ',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 16.0,
+                fontWeight: FontWeight.w400,
+              ),
             ),
-          ),
-          TextSpan(
-            text: 'Sign Up',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 18.0,
-              fontWeight: FontWeight.bold,
+            TextSpan(
+              text: 'Sign Up',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 18.0,
+                fontWeight: FontWeight.bold,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     ),
   );
