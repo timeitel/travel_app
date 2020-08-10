@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:travel_app/screens/authenticate/register_screen.dart';
 import 'package:travel_app/services/auth_service.dart';
 import 'package:travel_app/widgets/constants.dart' as Constants;
 
@@ -152,7 +153,39 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                           ),
                         ),
-                        _buildSignupBtn(),
+                        Align(
+                          alignment: Alignment.center,
+                          child: GestureDetector(
+                            onTap: () => {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => RegisterScreen()))
+                            },
+                            child: RichText(
+                              text: TextSpan(
+                                children: [
+                                  TextSpan(
+                                    text: 'Don\'t have an account? ',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 16.0,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  ),
+                                  TextSpan(
+                                    text: 'Sign Up',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 18.0,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        )
                       ],
                     ),
                   ),
@@ -205,36 +238,5 @@ Widget _buildPasswordInput() {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: <Widget>[],
-  );
-}
-
-Widget _buildSignupBtn() {
-  return Align(
-    alignment: Alignment.center,
-    child: GestureDetector(
-      onTap: () => print('Sign Up Button Pressed'),
-      child: RichText(
-        text: TextSpan(
-          children: [
-            TextSpan(
-              text: 'Don\'t have an account? ',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 16.0,
-                fontWeight: FontWeight.w400,
-              ),
-            ),
-            TextSpan(
-              text: 'Sign Up',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 18.0,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ],
-        ),
-      ),
-    ),
   );
 }
