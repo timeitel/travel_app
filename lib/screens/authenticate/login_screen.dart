@@ -226,17 +226,3 @@ class _buildLoginHero extends StatelessWidget {
     );
   }
 }
-
-Widget _buildEmailInput() {
-  return Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: <Widget>[],
-  );
-}
-
-Widget _buildPasswordInput() {
-  return Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: <Widget>[],
-  );
-}
