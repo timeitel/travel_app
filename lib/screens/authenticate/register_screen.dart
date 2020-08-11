@@ -15,6 +15,7 @@ class _RegisterState extends State<RegisterScreen> {
 
   String email = '';
   String password = '';
+  String error = '';
 
   @override
   Widget build(BuildContext context) {
@@ -108,6 +109,15 @@ class _RegisterState extends State<RegisterScreen> {
                             ),
                           ),
                         ),
+                        SizedBox(
+                          height: 12.0,
+                        ),
+                        Text(
+                          error,
+                          style: TextStyle(
+                            color: Colors.red,
+                          ),
+                        ),
                         Container(
                           padding: EdgeInsets.symmetric(vertical: 25.0),
                           width: double.infinity,
@@ -115,8 +125,13 @@ class _RegisterState extends State<RegisterScreen> {
                             elevation: 5.0,
                             onPressed: () async {
                               if (_formKey.currentState.validate()) {
-                                print(email);
-                                print(password);
+                                dynamic result =
+                                    await _auth.registerWithEmailAndPassword(
+                                        email, password);
+                                if (result == null) {
+                                  setState(
+                                      () => error = 'Please use a valid email');
+                                }
                               }
                             },
                             padding: EdgeInsets.all(15.0),
