@@ -11,9 +11,11 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterState extends State<RegisterScreen> {
   final AuthService _auth = AuthService();
+  final _formKey = GlobalKey<FormState>();
 
   String email = '';
   String password = '';
+  String error = '';
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +36,7 @@ class _RegisterState extends State<RegisterScreen> {
                     vertical: 120.0,
                   ),
                   child: Form(
+                    key: _formKey,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -50,6 +53,8 @@ class _RegisterState extends State<RegisterScreen> {
                           decoration: Constants.decorationStyle,
                           height: 60.0,
                           child: TextFormField(
+                            validator: (val) =>
+                                val.isEmpty ? 'Enter an email' : null,
                             onChanged: (val) {
                               setState(() => email = val);
                             },
@@ -81,6 +86,9 @@ class _RegisterState extends State<RegisterScreen> {
                           decoration: Constants.decorationStyle,
                           height: 60.0,
                           child: TextFormField(
+                            validator: (val) => val.length < 6
+                                ? 'Enter a password longer than 6 characters'
+                                : null,
                             onChanged: (val) {
                               setState(() => password = val);
                             },
@@ -101,14 +109,32 @@ class _RegisterState extends State<RegisterScreen> {
                             ),
                           ),
                         ),
+                        SizedBox(
+                          height: 12.0,
+                        ),
+                        Text(
+                          error,
+                          style: TextStyle(
+                            color: Colors.red,
+                          ),
+                        ),
                         Container(
                           padding: EdgeInsets.symmetric(vertical: 25.0),
                           width: double.infinity,
                           child: RaisedButton(
                             elevation: 5.0,
                             onPressed: () async {
-                              print(email);
-                              print(password);
+                              if (_formKey.currentState.validate()) {
+                                dynamic result =
+                                    await _auth.registerWithEmailAndPassword(
+                                        email, password);
+                                if (result == null) {
+                                  setState(
+                                      () => error = 'Please use a valid email');
+                                } else {
+                                  Navigator.pop(context);
+                                }
+                              }
                             },
                             padding: EdgeInsets.all(15.0),
                             shape: RoundedRectangleBorder(
