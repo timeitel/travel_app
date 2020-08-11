@@ -11,6 +11,7 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterState extends State<RegisterScreen> {
   final AuthService _auth = AuthService();
+  final _formKey = GlobalKey<FormState>();
 
   String email = '';
   String password = '';
@@ -34,6 +35,7 @@ class _RegisterState extends State<RegisterScreen> {
                     vertical: 120.0,
                   ),
                   child: Form(
+                    key: _formKey,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -50,6 +52,8 @@ class _RegisterState extends State<RegisterScreen> {
                           decoration: Constants.decorationStyle,
                           height: 60.0,
                           child: TextFormField(
+                            validator: (val) =>
+                                val.isEmpty ? 'Enter an email' : null,
                             onChanged: (val) {
                               setState(() => email = val);
                             },
@@ -81,6 +85,9 @@ class _RegisterState extends State<RegisterScreen> {
                           decoration: Constants.decorationStyle,
                           height: 60.0,
                           child: TextFormField(
+                            validator: (val) => val.length < 6
+                                ? 'Enter a password longer than 6 characters'
+                                : null,
                             onChanged: (val) {
                               setState(() => password = val);
                             },
@@ -107,8 +114,10 @@ class _RegisterState extends State<RegisterScreen> {
                           child: RaisedButton(
                             elevation: 5.0,
                             onPressed: () async {
-                              print(email);
-                              print(password);
+                              if (_formKey.currentState.validate()) {
+                                print(email);
+                                print(password);
+                              }
                             },
                             padding: EdgeInsets.all(15.0),
                             shape: RoundedRectangleBorder(
