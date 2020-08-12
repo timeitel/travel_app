@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:travel_app/screens/authenticate/login_screen.dart';
 import 'package:travel_app/services/auth_service.dart';
-import 'package:travel_app/widgets/constants.dart' as Constants;
+import 'package:travel_app/shared/constants.dart' as Constants;
 
 class RegisterScreen extends StatefulWidget {
   @override
@@ -12,6 +12,7 @@ class RegisterScreen extends StatefulWidget {
 class _RegisterState extends State<RegisterScreen> {
   final AuthService _auth = AuthService();
   final _formKey = GlobalKey<FormState>();
+  bool loading = false;
 
   String email = '';
   String password = '';
@@ -125,12 +126,17 @@ class _RegisterState extends State<RegisterScreen> {
                             elevation: 5.0,
                             onPressed: () async {
                               if (_formKey.currentState.validate()) {
+                                setState(() {
+                                  loading = true;
+                                });
                                 dynamic result =
                                     await _auth.registerWithEmailAndPassword(
                                         email, password);
                                 if (result == null) {
-                                  setState(
-                                      () => error = 'Please use a valid email');
+                                  setState(() {
+                                    error = 'Please use a valid email';
+                                    loading = false;
+                                  });
                                 } else {
                                   Navigator.pop(context);
                                 }
