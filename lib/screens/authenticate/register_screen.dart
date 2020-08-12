@@ -131,6 +131,8 @@ class _RegisterState extends State<RegisterScreen> {
                                 if (result == null) {
                                   setState(
                                       () => error = 'Please use a valid email');
+                                } else {
+                                  Navigator.pop(context);
                                 }
                               }
                             },
