@@ -11,10 +11,12 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final AuthService _auth = AuthService();
+  final _formKey = GlobalKey<FormState>();
 
   // form field state
   String email = '';
   String password = '';
+  String error = '';
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +37,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     vertical: 120.0,
                   ),
                   child: Form(
+                    key: _formKey,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -51,6 +54,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           decoration: Constants.decorationStyle,
                           height: 60.0,
                           child: TextFormField(
+                            validator: (val) =>
+                                val.isEmpty ? 'Enter an email' : null,
                             onChanged: (val) {
                               setState(() => email = val);
                             },
@@ -82,6 +87,9 @@ class _LoginScreenState extends State<LoginScreen> {
                           decoration: Constants.decorationStyle,
                           height: 60.0,
                           child: TextFormField(
+                            validator: (val) => val.length < 6
+                                ? 'Enter a password longer than 6 characters'
+                                : null,
                             onChanged: (val) {
                               setState(() => password = val);
                             },
@@ -139,8 +147,18 @@ class _LoginScreenState extends State<LoginScreen> {
                           child: RaisedButton(
                             elevation: 5.0,
                             onPressed: () async {
-                              print(email);
-                              print(password);
+                              if (_formKey.currentState.validate()) {
+                                dynamic result =
+                                    await _auth.signInWithEmailAndPassword(
+                                        email, password);
+                                if (result == null) {
+                                  setState(() => error =
+                                      'Unable to sign in with those credentials');
+                                }
+                                // else {
+                                //   Navigator.pop(context);
+                                // }
+                              }
                             },
                             padding: EdgeInsets.all(15.0),
                             shape: RoundedRectangleBorder(
@@ -151,6 +169,15 @@ class _LoginScreenState extends State<LoginScreen> {
                               'LOGIN',
                               style: Constants.loginTextStyle,
                             ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 12.0,
+                        ),
+                        Text(
+                          error,
+                          style: TextStyle(
+                            color: Colors.red,
                           ),
                         ),
                         Align(
