@@ -180,15 +180,6 @@ class _LoginScreenState extends State<LoginScreen> {
                                   ),
                                 ),
                               ),
-                              SizedBox(
-                                height: 12.0,
-                              ),
-                              Text(
-                                error,
-                                style: TextStyle(
-                                  color: Colors.red,
-                                ),
-                              ),
                               Align(
                                 alignment: Alignment.center,
                                 child: GestureDetector(
@@ -221,6 +212,12 @@ class _LoginScreenState extends State<LoginScreen> {
                                       ],
                                     ),
                                   ),
+                                ),
+                              ),
+                              Text(
+                                error,
+                                style: TextStyle(
+                                  color: Colors.red,
                                 ),
                               )
                             ],

@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:travel_app/models/user_model.dart';
+import 'package:travel_app/services/data_service.dart';
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -48,6 +49,9 @@ class AuthService {
       AuthResult result = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
       FirebaseUser user = result.user;
+
+      // create a new document for the user with the uid
+      await DataService(uid: user.uid).updateProfile('Billy Jane');
 
       return _userFromFirebaseUser(user);
     } catch (e) {
